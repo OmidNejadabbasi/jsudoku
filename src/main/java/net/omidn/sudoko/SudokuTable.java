@@ -16,4 +16,8 @@ public class SudokuTable {
 		this.size = table.length;
 	}
 	
+	public static SudokuTable of2DIntArray(int[][] table) {
+		return new SudokuTable(table);
+	}
+	
 }
