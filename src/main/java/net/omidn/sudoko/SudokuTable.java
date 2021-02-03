@@ -19,7 +19,15 @@ public class SudokuTable {
 	public static SudokuTable of2DIntArray(int[][] table) {
 		return new SudokuTable(table);
 	}
+	
+	
+	
 	public static SudokuTable allZeroTable(int size) {
 		return new SudokuTable(new int[size][size]);
 	}
+	
+	public synchronized void setCell(int i, int j, int value) {
+		table[i][j] = value;
+	}
+	
 }
