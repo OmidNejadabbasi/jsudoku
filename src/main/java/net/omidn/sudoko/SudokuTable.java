@@ -3,6 +3,7 @@ package net.omidn.sudoko;
 public class SudokuTable {
 
 	private int[][] table;
+	private int size;
 
 	private SudokuTable(int[][] table) {
 		if (table.length != table[0].length) {
@@ -12,6 +13,7 @@ public class SudokuTable {
 			throw new IllegalArgumentException("Sudoku table must of size of a perfect square root.");
 		}
 		this.table = table;
+		this.size = table.length;
 	}
 	
 }
