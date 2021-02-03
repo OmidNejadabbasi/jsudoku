@@ -19,5 +19,7 @@ public class SudokuTable {
 	public static SudokuTable of2DIntArray(int[][] table) {
 		return new SudokuTable(table);
 	}
-	
+	public static SudokuTable allZeroTable(int size) {
+		return new SudokuTable(new int[size][size]);
+	}
 }
