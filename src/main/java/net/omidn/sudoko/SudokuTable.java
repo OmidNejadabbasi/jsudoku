@@ -8,6 +8,9 @@ public class SudokuTable {
 		if (table.length != table[0].length) {
 			throw new IllegalArgumentException("Sudoku table must be a square");
 		}
+		if (Math.sqrt(table.length) - Math.floor(Math.sqrt(table.length)) != 0) {
+			throw new IllegalArgumentException("Sudoku table must of size of a perfect square root.");
+		}
 		this.table = table;
 	}
 	
