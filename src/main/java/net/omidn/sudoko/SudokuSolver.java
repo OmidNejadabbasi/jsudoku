@@ -8,7 +8,7 @@ public class SudokuSolver {
 		return null;
 	}
 	
-	private class Cell{
+	private static class Cell{
 		int i;
 		int j;
 		public Cell(int i, int j) {
@@ -16,5 +16,23 @@ public class SudokuSolver {
 			this.i = i;
 			this.j = j;
 		}
+	}
+	
+	private static Cell getNextEmptyCell(SudokuTable table, int i, int j) {
+		Cell nextEmptyCell = null;
+		for(int x = i;x<table.getSize();x++) {
+			// bound of the y iteration counter
+			int bound = j;
+			if (x>i) {
+				bound = 0;
+			}
+			for(int y = bound;y<table.getSize();y++) {
+				if(table.getCell(x, y) == 0) {
+					nextEmptyCell=new Cell(x, y);
+					return nextEmptyCell;
+				}
+			}
+		}
+		return nextEmptyCell;
 	}
 }
