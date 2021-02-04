@@ -7,4 +7,14 @@ public class SudokuSolver {
 		
 		return null;
 	}
+	
+	private class Cell{
+		int i;
+		int j;
+		public Cell(int i, int j) {
+			super();
+			this.i = i;
+			this.j = j;
+		}
+	}
 }
