@@ -30,4 +30,8 @@ public class SudokuTable {
 		table[i][j] = value;
 	}
 	
+	public int getCell(int i, int j) {
+		return table[i][j];
+	}
+	
 }
