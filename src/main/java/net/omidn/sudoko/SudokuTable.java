@@ -33,5 +33,13 @@ public class SudokuTable {
 	public int getCell(int i, int j) {
 		return table[i][j];
 	}
-	
+	@Override
+	protected Object clone(){
+		int[][] newTable = new int[size][size];
+		for(int i = 0;i<size;i++) {
+			newTable[i] = this.table[i].clone();
+		}
+		SudokuTable newObject = new SudokuTable(newTable);
+		return newObject;
+	}
 }
