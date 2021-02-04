@@ -33,6 +33,10 @@ public class SudokuTable {
 	public int getCell(int i, int j) {
 		return table[i][j];
 	}
+	public int getSize() {
+		return size;
+	}
+
 	@Override
 	protected Object clone(){
 		int[][] newTable = new int[size][size];
@@ -42,4 +46,5 @@ public class SudokuTable {
 		SudokuTable newObject = new SudokuTable(newTable);
 		return newObject;
 	}
+	
 }
