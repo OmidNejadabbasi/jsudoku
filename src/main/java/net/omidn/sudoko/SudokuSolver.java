@@ -13,10 +13,21 @@ public class SudokuSolver {
 			for (int j = 0; j < tableSize; j++) {
 				possibleAnswers.get(i).add(new ArrayList<Integer>());
 				for (int k = 0; k < tableSize; k++) {
-					possibleAnswers.get(i).get(j).add(k+1);
+					possibleAnswers.get(i).get(j).add(k + 1);
 				}
 			}
 		}
+
+		// clearing the possible answers for cell that are already occupied
+		for (int i = 0; i < tableSize; i++) {
+			for (int j = 0; j < tableSize; j++) {
+				if (table.getCell(i, j) != 0) {
+					possibleAnswers.get(i).get(j).clear();
+				}
+			}
+		}
+		
+
 		return null;
 	}
 
