@@ -27,6 +27,13 @@ public class SudokuSolver {
 			}
 		}
 		
+		for (int i = 0; i < tableSize; i++) {
+			for (int j = 0; j < tableSize; j++) {
+				if (table.getCell(i, j) == 0) {
+					possibleAnswers.get(i).get(j).removeAll(notValidValues(table, i, j));
+				}
+			}
+		}
 
 		return null;
 	}
@@ -59,4 +66,13 @@ public class SudokuSolver {
 		}
 		return nextEmptyCell;
 	}
+	
+	private static List<Integer> notValidValues(SudokuTable table, int i, int j) {
+		
+		
+		
+		return null;
+		
+	}
+	
 }
