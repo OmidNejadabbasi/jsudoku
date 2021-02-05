@@ -1,7 +1,10 @@
 package net.omidn.sudoko;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class SudokuSolver {
 	public static SudokuTable solve(SudokuTable table) {
@@ -26,7 +29,7 @@ public class SudokuSolver {
 				}
 			}
 		}
-		
+
 		for (int i = 0; i < tableSize; i++) {
 			for (int j = 0; j < tableSize; j++) {
 				if (table.getCell(i, j) == 0) {
@@ -66,13 +69,29 @@ public class SudokuSolver {
 		}
 		return nextEmptyCell;
 	}
-	
-	private static List<Integer> notValidValues(SudokuTable table, int i, int j) {
-		
-		
+
+	private static Collection<Integer> notValidValues(SudokuTable table, int i, int j) {
+
+		Set<Integer> notValidSet = new HashSet<>();
+
+		// adding numbers in row i to the set
+		for (int x = 0; x < table.getSize(); x++) {
+			if (table.getCell(i, x) != 0) {
+				notValidSet.add(table.getCell(i, x));
+			}
+		}
+
+		// adding numbers in column j to the set
+		for (int x = 0; x < table.getSize(); x++) {
+			if (table.getCell(x, j) != 0) {
+				notValidSet.add(table.getCell(i, x));
+			}
+		}
+
+		// TODO add values from the part this cell is on to the set
 		
 		return null;
-		
+
 	}
-	
+
 }
