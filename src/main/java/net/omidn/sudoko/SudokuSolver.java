@@ -90,16 +90,16 @@ public class SudokuSolver {
 
 		// add values from the part this cell is on to the set
 		int sqr = (int) Math.sqrt(table.getSize());
-		int start_x = i/sqr;
-		int start_y = j/sqr;
-		for(int x = 0; x < sqr; x++) {
-			for(int y = 0; y < sqr; y++) {
+		int start_x = (i / sqr) * sqr;
+		int start_y = (j / sqr) * sqr;
+		for (int x = 0; x < sqr; x++) {
+			for (int y = 0; y < sqr; y++) {
 				if (table.getCell(start_x + x, start_y + y) != 0) {
 					notValidSet.add(table.getCell(start_x + x, start_y + y));
 				}
 			}
 		}
-		
+
 		return notValidSet;
 
 	}
