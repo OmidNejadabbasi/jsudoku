@@ -38,7 +38,7 @@ public class SudokuTable {
 	}
 
 	@Override
-	protected Object clone(){
+	protected SudokuTable clone(){
 		int[][] newTable = new int[size][size];
 		for(int i = 0;i<size;i++) {
 			newTable[i] = this.table[i].clone();

@@ -8,6 +8,9 @@ import java.util.Set;
 
 public class SudokuSolver {
 	public static SudokuTable solve(SudokuTable table) {
+		
+		SudokuTable newTable = table.clone();
+		
 		// initializing the arrayList that holds the possible answers for a cell
 		List<List<List<Integer>>> possibleAnswers = new ArrayList<>();
 		int tableSize = table.getSize();
@@ -38,7 +41,7 @@ public class SudokuSolver {
 			}
 		}
 
-		return null;
+		return newTable;
 	}
 
 	private static class Cell {
