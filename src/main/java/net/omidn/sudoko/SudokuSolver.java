@@ -40,8 +40,14 @@ public class SudokuSolver {
 				}
 			}
 		}
-
+		
+		recursiveSolve(newTable);
+		
 		return newTable;
+	}
+
+	private static void recursiveSolve(SudokuTable newTable) {
+		// TODO more work tomorrow :)
 	}
 
 	private static class Cell {
