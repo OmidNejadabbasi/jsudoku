@@ -41,13 +41,33 @@ public class SudokuSolver {
 			}
 		}
 		
-		recursiveSolve(newTable);
+		recursiveSolve(possibleAnswers, newTable);
 		
 		return newTable;
 	}
 
-	private static void recursiveSolve(SudokuTable newTable) {
-		// TODO more work tomorrow :)
+	private static boolean recursiveSolve(List<List<List<Integer>>> possibleAnswers, SudokuTable newTable) {
+		fillMandatory(possibleAnswers, newTable);
+		
+		return false;
+	}
+
+	/**
+	 * Fills any cell in <code>table</code> that only can have one value.
+	 * 
+	 * @param possibleAnswers The list of possible answers for each cell
+	 * @param table The table to fill
+	 */
+	private static void fillMandatory(List<List<List<Integer>>> possibleAnswers, SudokuTable table) {
+		int tableSize = table.getSize();
+		for (int i = 0; i < tableSize; i++) {
+			for (int j = 0; j < tableSize; j++) {
+				if (possibleAnswers.get(i).get(j).size() == 1) {
+					table.setCell(i, j, possibleAnswers.get(i).get(j).get(0));
+					removeInterferences(possibleAnswers, possibleAnswers.get(i).get(j).get(0));
+				}
+			}
+		}
 	}
 
 	private static class Cell {
