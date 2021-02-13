@@ -65,10 +65,14 @@ public class SudokuSolver {
 				if (possibleAnswers.get(i).get(j).size() == 1) {
 					table.setCell(i, j, possibleAnswers.get(i).get(j).get(0));
 					removeInterferences(possibleAnswers, possibleAnswers.get(i).get(j).get(0), i, j);
-					// TODO how to make it recursive!? 
+					// how to make it recursive!? 
+					fillMandatory(possibleAnswers, table);
+					break;
 				}
 			}
 		}
+		return; // redundant :)
+		
 	}
 
 	private static void removeInterferences(List<List<List<Integer>>> possibleAnswers, int value, int i, int j) {
