@@ -8,9 +8,9 @@ import java.util.Set;
 
 public class SudokuSolver {
 	public static SudokuTable solve(SudokuTable table) {
-		
+
 		SudokuTable newTable = table.clone();
-		
+
 		// initializing the arrayList that holds the possible answers for a cell
 		List<List<List<Integer>>> possibleAnswers = new ArrayList<>();
 		int tableSize = table.getSize();
@@ -40,15 +40,15 @@ public class SudokuSolver {
 				}
 			}
 		}
-		
+
 		recursiveSolve(possibleAnswers, newTable);
-		
+
 		return newTable;
 	}
 
 	private static boolean recursiveSolve(List<List<List<Integer>>> possibleAnswers, SudokuTable newTable) {
 		fillMandatory(possibleAnswers, newTable);
-		
+
 		return false;
 	}
 
@@ -64,10 +64,31 @@ public class SudokuSolver {
 			for (int j = 0; j < tableSize; j++) {
 				if (possibleAnswers.get(i).get(j).size() == 1) {
 					table.setCell(i, j, possibleAnswers.get(i).get(j).get(0));
-					removeInterferences(possibleAnswers, possibleAnswers.get(i).get(j).get(0));
+					removeInterferences(possibleAnswers, possibleAnswers.get(i).get(j).get(0), i, j);
+					// TODO how to make it recursive!? 
 				}
 			}
 		}
+	}
+
+	private static void removeInterferences(List<List<List<Integer>>> possibleAnswers, int value, int i, int j) {
+		for (int x = 0; x < possibleAnswers.size(); x++) {
+			possibleAnswers.get(x).get(i).remove(value);
+		}
+
+		for (int x = 0; x < possibleAnswers.size(); x++) {
+			possibleAnswers.get(j).get(x).remove((Object) value);
+		}
+
+		int sqr = (int) Math.sqrt(possibleAnswers.size());
+		int start_x = (i / sqr) * sqr;
+		int start_y = (j / sqr) * sqr;
+		for (int x = 0; x < sqr; x++) {
+			for (int y = 0; y < sqr; y++) {
+				possibleAnswers.get(start_x + x).get(start_y + y).remove((Integer) value);
+			}
+		}
+
 	}
 
 	private static class Cell {
