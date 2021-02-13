@@ -41,14 +41,27 @@ public class SudokuSolver {
 			}
 		}
 
-		recursiveSolve(possibleAnswers, newTable);
+		recursiveSolve(possibleAnswers, newTable, 0, 0);
 
 		return newTable;
 	}
 
-	private static boolean recursiveSolve(List<List<List<Integer>>> possibleAnswers, SudokuTable newTable) {
+	private static boolean recursiveSolve(List<List<List<Integer>>> possibleAnswers, SudokuTable newTable, int i, int j) {
 		fillMandatory(possibleAnswers, newTable);
-
+		
+		Cell cell = getNextEmptyCell(newTable, i, j);
+		if (cell == null) {
+			return true;
+		}
+		for (int x = 0; x < possibleAnswers.get(cell.i).get(cell.j).size(); x++) {
+			newTable.setCell(cell.i,  cell.j, possibleAnswers.get(cell.i).get(cell.j).get(x));
+			if(recursiveSolve(possibleAnswers, newTable, cell.i, cell.j)){
+				return true;
+			}
+			else {
+				newTable.setCell(cell.i,  cell.j, 0);
+			}
+		}
 		return false;
 	}
 
@@ -56,7 +69,7 @@ public class SudokuSolver {
 	 * Fills any cell in <code>table</code> that only can have one value.
 	 * 
 	 * @param possibleAnswers The list of possible answers for each cell
-	 * @param table The table to fill
+	 * @param table           The table to fill
 	 */
 	private static void fillMandatory(List<List<List<Integer>>> possibleAnswers, SudokuTable table) {
 		int tableSize = table.getSize();
@@ -65,14 +78,14 @@ public class SudokuSolver {
 				if (possibleAnswers.get(i).get(j).size() == 1) {
 					table.setCell(i, j, possibleAnswers.get(i).get(j).get(0));
 					removeInterferences(possibleAnswers, possibleAnswers.get(i).get(j).get(0), i, j);
-					// how to make it recursive!? 
+					// how to make it recursive!?
 					fillMandatory(possibleAnswers, table);
 					break;
 				}
 			}
 		}
 		return; // redundant :)
-		
+
 	}
 
 	private static void removeInterferences(List<List<List<Integer>>> possibleAnswers, int value, int i, int j) {
