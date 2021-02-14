@@ -2,6 +2,7 @@ package net.omidn.sudoko;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -55,6 +56,8 @@ public class SudokuSolver {
 		}
 		for (int x = 0; x < possibleAnswers.get(cell.i).get(cell.j).size(); x++) {
 			newTable.setCell(cell.i,  cell.j, possibleAnswers.get(cell.i).get(cell.j).get(x));
+			// TODO I need to copy the possibleAnswers 
+			removeInterferences(possibleAnswers, possibleAnswers.get(cell.i).get(cell.j).get(x), cell.i, cell.j);
 			if(recursiveSolve(possibleAnswers, newTable, cell.i, cell.j)){
 				return true;
 			}
@@ -151,7 +154,7 @@ public class SudokuSolver {
 		// adding numbers in column j to the set
 		for (int x = 0; x < table.getSize(); x++) {
 			if (table.getCell(x, j) != 0) {
-				notValidSet.add(table.getCell(i, x));
+				notValidSet.add(table.getCell(j, x));
 			}
 		}
 
